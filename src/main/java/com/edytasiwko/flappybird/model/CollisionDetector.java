@@ -1,7 +1,6 @@
-import gameObjects.GameObject;
-import gameObjects.Obstacle;
+package com.edytasiwko.flappybird.model;
 
-import java.util.List;
+import java.util.Collection;
 
 public class CollisionDetector {
     private final int width;
@@ -12,9 +11,9 @@ public class CollisionDetector {
         this.height = height;
     }
 
-    public void tick(GameObject bird, List<Obstacle> obstacles) {
-        if(bird.getX() < 0 || (bird.getX() + bird.getWidth()) > width || bird.getY() < 0 || (bird.getY() + bird.getHeight() > height)) {
-            throw new GameOver();
+    public boolean check(GameObject bird, Collection<? extends GameObject> obstacles) {
+        if (bird.getX() < 0 || (bird.getX() + bird.getWidth()) > width || bird.getY() < 0 || (bird.getY() + bird.getHeight() > height)) {
+            return true;
         }
 
         for (GameObject obstacle : obstacles) {
@@ -22,9 +21,10 @@ public class CollisionDetector {
                     bird.getX() + bird.getWidth() > obstacle.getX() &&
                     bird.getY() < obstacle.getY() + obstacle.getHeight() &&
                     bird.getY() + bird.getHeight() > obstacle.getY()) {
-                throw new GameOver();
+                return true;
             }
         }
+        return false;
     }
 
 }

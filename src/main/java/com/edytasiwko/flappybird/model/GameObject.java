@@ -1,27 +1,23 @@
-package gameObjects;
-
-import java.awt.*;
+package com.edytasiwko.flappybird.model;
 
 public abstract class GameObject {
-    private final Color color;
-    protected int x;
-    protected int y;
+    protected double x;
+    protected double y;
     protected int width;
     protected int height;
 
-    public GameObject(int x, int y, int width, int height, Color color) {
+    public GameObject(double x, double y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.color = color;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -32,9 +28,5 @@ public abstract class GameObject {
 
     public int getHeight() {
         return height;
-    }
-
-    public Color getColor() {
-        return color;
     }
 }
